@@ -1,0 +1,441 @@
+/* ==========================================================================
+   Smart Lender — visual identity
+   Palette: ink navy / parchment / brass / vault green / rust
+   Type: serif display (ledger headings) + grotesque body + mono for figures
+   Signature element: the wax-seal "stamp" on the decision page
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --ink: #10233f;
+  --ink-soft: #1b3358;
+  --parchment: #f5f1e7;
+  --parchment-dark: #e8e0cc;
+  --brass: #b8873b;
+  --brass-bright: #d4a24e;
+  --vault: #1b4332;
+  --rust: #a8402a;
+  --slate: #5a5f6d;
+  --line: rgba(16, 35, 63, 0.14);
+
+  --font-display: 'Source Serif 4', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--parchment);
+  color: var(--ink);
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px);
+  background-size: 100% 44px;
+}
+
+a { color: inherit; }
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ---------------- Header / ledger band ---------------- */
+.ledger-band {
+  background: var(--ink);
+  color: var(--parchment);
+  border-bottom: 3px solid var(--brass);
+}
+
+.ledger-band .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--parchment);
+}
+
+.brand .mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid var(--brass-bright);
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--brass-bright);
+}
+
+.brand .tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 231, 0.55);
+  font-weight: 400;
+}
+
+nav.top-nav {
+  display: flex;
+  gap: 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+nav.top-nav a {
+  text-decoration: none;
+  color: rgba(245, 241, 231, 0.7);
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+
+nav.top-nav a:hover,
+nav.top-nav a.active {
+  color: var(--brass-bright);
+  border-color: var(--brass-bright);
+}
+
+/* ---------------- Hero ---------------- */
+.hero {
+  padding: 76px 0 60px;
+  position: relative;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 18px;
+}
+
+.eyebrow::before {
+  content: "§ ";
+  color: var(--rust);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.08;
+  margin: 0 0 22px;
+  max-width: 15ch;
+}
+
+.hero p.lede {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--slate);
+  max-width: 56ch;
+  margin: 0 0 34px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 26px;
+  border-radius: 2px;
+  border: 1.5px solid var(--ink);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--parchment);
+}
+.btn-primary:hover { background: var(--ink-soft); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+}
+.btn-ghost:hover { background: rgba(16,35,63,0.06); }
+
+/* ---------------- Ledger stat rows (home page) ---------------- */
+.ledger-rows {
+  margin-top: 54px;
+  border-top: 1px solid var(--line);
+}
+
+.ledger-row {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 18px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.ledger-row .no {
+  font-family: var(--font-mono);
+  color: var(--brass);
+  font-size: 13px;
+}
+
+.ledger-row .label {
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.ledger-row .value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--vault);
+}
+
+/* ---------------- Cards / pipeline strip ---------------- */
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin: 54px 0;
+}
+
+.pipeline .step {
+  background: var(--parchment);
+  padding: 22px 18px;
+}
+
+.pipeline .step .k {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--brass);
+  letter-spacing: 0.1em;
+}
+
+.pipeline .step h4 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  margin: 8px 0 6px;
+}
+
+.pipeline .step p {
+  font-size: 13px;
+  color: var(--slate);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------------- Form (predict page) ---------------- */
+.form-card {
+  background: #fffdf7;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 40px;
+  margin: 40px 0 70px;
+  box-shadow: 0 1px 0 var(--brass);
+}
+
+.form-card h2 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  margin: 0 0 6px;
+}
+
+.form-card .sub {
+  color: var(--slate);
+  font-size: 14px;
+  margin: 0 0 30px;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 28px;
+}
+
+.field { display: flex; flex-direction: column; gap: 7px; }
+
+.field.full { grid-column: 1 / -1; }
+
+.field label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.field select,
+.field input {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 11px 12px;
+  border: 1px solid var(--parchment-dark);
+  border-bottom: 2px solid var(--ink);
+  border-radius: 2px;
+  background: var(--parchment);
+  color: var(--ink);
+}
+
+.field select:focus,
+.field input:focus {
+  outline: none;
+  border-bottom-color: var(--brass);
+  background: #fff;
+}
+
+.form-actions {
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.form-actions .hint {
+  font-size: 12px;
+  color: var(--slate);
+}
+
+/* ---------------- Decision / stamp page ---------------- */
+.decision {
+  padding: 70px 0 90px;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 60px;
+  align-items: start;
+}
+
+.decision h2 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 14px;
+}
+
+.decision .headline {
+  font-family: var(--font-display);
+  font-size: 40px;
+  margin: 0 0 18px;
+}
+
+.decision .headline.approved { color: var(--vault); }
+.decision .headline.rejected { color: var(--rust); }
+
+.decision .desc {
+  color: var(--slate);
+  line-height: 1.65;
+  max-width: 52ch;
+  margin-bottom: 30px;
+}
+
+.receipt {
+  border-top: 1px dashed var(--brass);
+  padding-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.receipt .r-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dotted var(--line);
+  color: var(--ink);
+}
+
+.receipt .r-row span:first-child { color: var(--slate); }
+
+/* The stamp — signature element */
+.stamp-wrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.stamp {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  border: 3px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transform: rotate(-9deg);
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.stamp::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.55;
+}
+
+.stamp .stamp-text {
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.stamp .stamp-sub {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.stamp.approved { color: var(--vault); }
+.stamp.rejected { color: var(--rust); }
+
+/* ---------------- Footer ---------------- */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 26px 0 40px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--slate);
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 760px) {
+  .decision { grid-template-columns: 1fr; }
+  .field-grid { grid-template-columns: 1fr; }
+  .pipeline { grid-template-columns: 1fr 1fr; }
+  nav.top-nav { display: none; }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision — Smart Lender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <header class="ledger-band">
+    <div class="wrap">
+      <a href="{{ url_for('home') }}" class="brand">
+        <span class="mark">SL</span>
+        Smart Lender
+        <span class="tag">Loan Desk</span>
+      </a>
+      <nav class="top-nav">
+        <a href="{{ url_for('home') }}">Ledger</a>
+        <a href="{{ url_for('predict_form') }}">New Application</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
+    {% if error %}
+      <section class="decision" style="grid-template-columns: 1fr;">
+        <div>
+          <h2>Could not score application</h2>
+          <p class="headline rejected" style="font-size:26px;">Something went wrong</p>
+          <p class="desc">{{ error }}</p>
+          <a href="{{ url_for('predict_form') }}" class="btn btn-ghost">← Try again</a>
+        </div>
+      </section>
+    {% else %}
+      <section class="decision">
+        <div>
+          <h2>Model Decision</h2>
+          {% if approved %}
+            <p class="headline approved">Loan Approved</p>
+            <p class="desc">
+              Based on the details provided, the applicant's profile is consistent with historical
+              applications that repaid successfully. {{ model_name }} scored this application
+              {% if confidence %}with {{ confidence }}% confidence{% endif %}.
+              A credit officer should still confirm supporting documents before disbursal.
+            </p>
+          {% else %}
+            <p class="headline rejected">Loan Rejected</p>
+            <p class="desc">
+              Based on the details provided, this application shares more in common with historical
+              applications that defaulted or fell through. {{ model_name }} scored this application
+              {% if confidence %}with {{ confidence }}% confidence{% endif %}.
+              Consider requesting further documentation or a co-signer before a final decision.
+            </p>
+          {% endif %}
+
+          <a href="{{ url_for('predict_form') }}" class="btn btn-ghost">← Score another application</a>
+
+          <div class="receipt">
+            <div class="r-row"><span>Gender</span><span>{{ applicant.gender }}</span></div>
+            <div class="r-row"><span>Marital status</span><span>{{ applicant.married }}</span></div>
+            <div class="r-row"><span>Dependents</span><span>{{ applicant.dependents }}</span></div>
+            <div class="r-row"><span>Education</span><span>{{ applicant.education }}</span></div>
+            <div class="r-row"><span>Employment</span><span>{{ applicant.self_employed }}</span></div>
+            <div class="r-row"><span>Property area</span><span>{{ applicant.property_area }}</span></div>
+            <div class="r-row"><span>Applicant income</span><span>${{ applicant.applicant_income }}</span></div>
+            <div class="r-row"><span>Co-applicant income</span><span>${{ applicant.coapplicant_income or 0 }}</span></div>
+            <div class="r-row"><span>Loan amount</span><span>{{ applicant.loan_amount }}k</span></div>
+            <div class="r-row"><span>Loan term</span><span>{{ applicant.loan_amount_term }} days</span></div>
+            <div class="r-row"><span>Credit history</span><span>{{ 'Good' if applicant.credit_history == '1' else 'Issues' }}</span></div>
+          </div>
+        </div>
+
+        <div class="stamp-wrap">
+          <div class="stamp {{ 'approved' if approved else 'rejected' }}">
+            <div>
+              <span class="stamp-text">{{ 'Approved' if approved else 'Declined' }}</span>
+              <span class="stamp-sub">Smart Lender · Loan Desk</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  </div>
+
+  <footer>
+    <div class="wrap" style="display:flex; justify-content:space-between; width:100%;">
+      <span>Smart Lender — internal decision support tool</span>
+      <span>For officer review, not a final credit decision</span>
+    </div>
+  </footer>
+
+</body>
+</html>

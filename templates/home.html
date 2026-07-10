@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Lender — Loan Eligibility Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <header class="ledger-band">
+    <div class="wrap">
+      <a href="{{ url_for('home') }}" class="brand">
+        <span class="mark">SL</span>
+        Smart Lender
+        <span class="tag">Loan Desk</span>
+      </a>
+      <nav class="top-nav">
+        <a href="{{ url_for('home') }}" class="active">Ledger</a>
+        <a href="{{ url_for('predict_form') }}">New Application</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Automated Credit Desk</p>
+      <h1>A faster read on who repays.</h1>
+      <p class="lede">
+        Smart Lender scores loan applications the moment they're entered —
+        gender, income, credit history, property area and more — against a
+        model trained on historical repayment outcomes, so your team can
+        approve, decline, or flag for review in seconds instead of days.
+      </p>
+      <a href="{{ url_for('predict_form') }}" class="btn btn-primary">Open an Application →</a>
+
+      <div class="ledger-rows">
+        <div class="ledger-row">
+          <span class="no">01</span>
+          <span class="label">Candidate models trained on historical applications</span>
+          <span class="value">4</span>
+        </div>
+        <div class="ledger-row">
+          <span class="no">02</span>
+          <span class="label">Applicant attributes evaluated per decision</span>
+          <span class="value">11</span>
+        </div>
+        <div class="ledger-row">
+          <span class="no">03</span>
+          <span class="label">Best model selected by held-out test accuracy</span>
+          <span class="value">{{ model_name }}</span>
+        </div>
+        <div class="ledger-row">
+          <span class="no">04</span>
+          <span class="label">Time to a decision, once the form is submitted</span>
+          <span class="value">&lt; 1 sec</span>
+        </div>
+      </div>
+
+      <div class="pipeline">
+        <div class="step">
+          <p class="k">01 · Intake</p>
+          <h4>Applicant details</h4>
+          <p>Income, dependents, education, credit history and property area, entered through a simple form.</p>
+        </div>
+        <div class="step">
+          <p class="k">02 · Preprocess</p>
+          <h4>Clean & encode</h4>
+          <p>Missing values are filled, categories are encoded, and figures are scaled the same way the model was trained.</p>
+        </div>
+        <div class="step">
+          <p class="k">03 · Predict</p>
+          <h4>Model scoring</h4>
+          <p>The best of four trained classifiers — Decision Tree, Random Forest, KNN, or XGBoost — scores the application.</p>
+        </div>
+        <div class="step">
+          <p class="k">04 · Decision</p>
+          <h4>Approve / decline</h4>
+          <p>A clear result and confidence level, ready for a credit officer to confirm or override.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap" style="display:flex; justify-content:space-between; width:100%;">
+      <span>Smart Lender — internal decision support tool</span>
+      <span>For officer review, not a final credit decision</span>
+    </div>
+  </footer>
+
+</body>
+</html>
